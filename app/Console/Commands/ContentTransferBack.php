@@ -31,9 +31,12 @@ class ContentTransferBack extends Command
      */
     public function handle()
     {
-        $items = CourseItems::all();
+        // А почему бы не выбрать сразу курсы (чанками) и сразу с жадной загрузкой их элементов? 
+        // $sources = Course::with('items')->chunk(...). Получим в таком случае сразу список всех элементов и один раз запишем в курс. 
+        // В таком случае можно будет даже реализовать вариант: сначала удалить старый контент в json, потом туда записать только актуальные items
+        $items = CourseItems::all(); // И даже в таком варианте можно запросить сразу с курсом, чтобы дополнительно не дергать базу.
         foreach ($items as $item) {
-            $itemId = $item->item_id;
+            $itemId = $item->item_id; //повторное выделение памяти. Очень не критично, но и не особо понятно, зачем выделять в отдельную переменную
             $courseId = $item->course_id;
             $itemType = TypeOfItems::where('type_id', $item->type_id)->first()->type;
             $itemTitle = $item->title;
@@ -50,8 +53,8 @@ class ContentTransferBack extends Command
             $content[] = $newItem;
             $course->all_content = json_encode($content);
             $course->save();
-            if($newItem) {
-                DB::table('course_items')->where('item_id', $itemId)->delete();
+            if($newItem) { //а когда это условие может не выполниться? зачем оно?
+                DB::table('course_items')->where('item_id', $itemId)->delete(); //а почему бы сразу не сделать $item->delete()? заодно еще вызовет кучу eloquent-событий, на которых может быть доп функционал 
             }
         }
     }
