@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link type="image/x-icon" rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <title>CourseZone</title>
 
     <!-- Fonts -->
