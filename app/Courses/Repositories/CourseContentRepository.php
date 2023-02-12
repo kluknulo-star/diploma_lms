@@ -25,7 +25,7 @@ class CourseContentRepository
 
     public function destroyStatement($sectionId)
     {
-        return ItemsStats::where('item_id', $sectionId)->firstOrFail()->delete();
+        return optional(ItemsStats::where('item_id', $sectionId))->delete();
     }
 
     public function restore($sectionId): bool

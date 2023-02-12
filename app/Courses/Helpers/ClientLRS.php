@@ -29,7 +29,7 @@ class ClientLRS
         $response = Http::withHeaders([
             'Authorization' => $tokenLRS,
         ])->withBody($statement, 'application/json')
-            ->post($domainLRS . '/api/statements');
+            ->post($domainLRS . '/api/statements/');
 
         return $response;
     }

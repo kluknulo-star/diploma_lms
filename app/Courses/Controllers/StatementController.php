@@ -21,7 +21,7 @@ class StatementController extends Controller
     {
         $myCourseProgressLaunched = $request->input('myCourseProgressLaunched');
 
-        if (in_array($sectionId,$myCourseProgressLaunched)){
+        if (is_array($myCourseProgressLaunched) && in_array($sectionId,$myCourseProgressLaunched)){
             return "Already sent launch";
         }
 
@@ -42,7 +42,7 @@ class StatementController extends Controller
     {
         $myCourseProgressPassed = $request->input('myCourseProgressPassed');
 
-        if (in_array($sectionId,$myCourseProgressPassed)){
+        if (is_array($myCourseProgressPassed) && in_array($sectionId,$myCourseProgressPassed)){
             return "Already sent pass";
         }
 
