@@ -25,7 +25,7 @@ class CreateCourseContentRequest extends FormRequest
     {
         return [
             'sectionType' => 'required',
-            'sectionTitle' => 'required|alpha|max:70',
+            'sectionTitle' => 'required|max:70',
         ];
     }
 }
