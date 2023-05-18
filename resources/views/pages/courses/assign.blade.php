@@ -12,66 +12,66 @@
             <div class="users__after-title-links">
                 <p class="h2">
                     @if ($state == 'already')
-                        {{ __('main.assigned') }} {{ __('main.students') }}
+                        Назначенные студенты
                     @elseif($state == 'all')
-                        {{ __('main.students') }} ({{ __('main.all') }})
+                        Все студенты
                     @endif
                 </p>
                 <ul class="assigned-users-navbar">
                     <li class="assigned-users-navbar-elem">
-                        <a href="{{ route('courses.edit.assignments', ['id' => $courseId, 'state' => 'already']) }}" class="rounded-black-button whitesmoke-text">
-                            {{ __('main.assigned') }} {{ __('main.students') }}
+                        <a href="{{ route('courses.edit.assignments', ['id' => $courseId, 'state' => 'already']) }}" class="rounded-red-button whitesmoke-text">
+                            Назначенные
                         </a>
                     </li>
                     <li class="assigned-users-navbar-elem">
                         <a href="{{ route('courses.edit.assignments', ['id' => $courseId, 'state' => 'all']) }}" class="rounded-black-button whitesmoke-text">
-                            {{ __('main.students') }}
+                            Все
                         </a>
                     </li>
                     <li class="assigned-users-navbar-elem">
-                        <a href="{{ route('courses.edit', ['id' => $courseId]) }}" class="rounded-black-button whitesmoke-text">
-                            {{ __('main.back') }}
+                        <a href="{{ route('courses.edit', ['id' => $courseId]) }}" class="rounded-blue-button">
+                            Вернуться
                         </a>
                     </li>
                 </ul>
             </div>
             @if ($state == 'already')
                 <form action="{{ route('courses.edit.assignments', ['id' => $courseId, 'state' => 'already']) }}" method="get" class="users__form-search">
-                    <input name="search" type="text" placeholder="{{ __('main.search') }}" class="users__input-search">
+                    <input name="search" type="text" placeholder="Найти" class="users__input-search">
                     <input name="assign" value="already" type="hidden">
                     <button type="submit" class="users__button-search"><i class="fas fa-search"></i></button>
                 </form>
             @elseif ($state == 'all')
                 <form action="{{ route('courses.edit.assignments', ['id' => $courseId, 'state' => 'all']) }}" method="get" class="users__form-search">
-                    <input name="search" type="text" placeholder="{{ __('main.search') }}" class="users__input-search">
+                    <input name="search" type="text" placeholder="Найти" class="users__input-search">
                     <input name="assign" value="all" type="hidden">
                     <button type="submit" class="users__button-search"><i class="fas fa-search"></i></button>
                 </form>
             @endif
         </div>
         <div class="classic-box mb30">
-            <p class="h2 mb30">{{ __('main.multiply') }} {{ __('main.adding') }}</p>
+            <p class="h2 mb30">Множественное добавление</p>
             <form method="post" action="{{ route('courses.course.assgin', ['id' => $courseId]) }}">
                 @csrf
                 @method('post')
                 <textarea
                     required
-                    placeholder="{{ __('main.multiplyAddingPlaceholder') }}"
+                    placeholder="Вставьте сюда почты тех, кого хотите зачислить"
                     class="edit__input col-input input h150" name="studentEmails" id="" cols="30" rows="10"></textarea>
-                <button type="submit" class="rounded-black-button">{{ __('main.add') }}</button>
+                <button type="submit" class="rounded-black-button">Добавить</button>
             </form>
         </div>
         <table class="users__table classic-box">
             <thead>
             <tr class="users__tr users__tr_head">
-                <th class="users__td users__td-img">{{ __('main.avatar') }}</th>
+                <th class="users__td users__td-img">Фото</th>
                 <th class="users__td">ID</th>
-                <th class="users__td">{{ __('main.email') }}</th>
-                <th class="users__td">{{ __('main.surname') }}</th>
-                <th class="users__td">{{ __('main.name') }}</th>
-                <th class="users__td">{{ __('main.patronymic') }}</th>
-                @if ($state == 'already')<th class="users__td">{{ __('main.progress') }}</th>@endif
-                <th class="users__td"></th>
+                <th class="users__td">Почта</th>
+                <th class="users__td">Фамилия</th>
+                <th class="users__td">Имя</th>
+                <th class="users__td">Отчество</th>
+                @if ($state == 'already')<th class="users__td">Прогресс</th>@endif
+                <th class="users__td">Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -105,7 +105,7 @@
                 </tr>
                 <div class="modal" id="deduct-modal-{{ $user->user_id }}">
                     <div class="modal-box">
-                        <p class="modal-text modal-text-delete mb20 mr20">{{ __('main.sureQuestion') }} {{ __('main.deduct') }} {{ $user->name }} {{ __('main.fromYourCourse') }}?</p>
+                        <p class="modal-text modal-text-delete mb20 mr20">Вы уверены, что хотите отчислить с курса полльзователя  {{ $user->name }} ?</p>
 
                         <div class="modal-buttons">
                             <form class="table-action-form" action="{{ route('courses.course.deduct', ['id' => $courseId]) }}" method="post">
@@ -113,9 +113,9 @@
                                 @method('post')
                                 <input name="user_id" type="hidden" value="{{ $user->user_id }}">
                                 <input name="action" type="hidden" value="deduct">
-                                <button type="submit" class="table-action-button confirm-button">{{ __('main.confirm') }}</button>
+                                <button type="submit" class="table-action-button confirm-button">Подтвердить</button>
                             </form>
-                            <button onclick="document.getElementById('deduct-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">{{ __('main.cancel') }}</button>
+                            <button onclick="document.getElementById('deduct-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Отменить</button>
                         </div>
 
                     </div>
@@ -123,7 +123,7 @@
 
                 <div class="modal" id="assign-modal-{{ $user->user_id }}">
                     <div class="modal-box">
-                        <p class="modal-text modal-text-restore mb20 mr20">{{ __('main.sureQuestion') }} {{ __('main.assign') }} {{ $user->name }} {{ __('main.toYourCourse') }}?</p>
+                        <p class="modal-text modal-text-restore mb20 mr20">Вы уверены, что хотите назначить на курс полльзователя  {{ $user->name }}?</p>
 
                         <div class="modal-buttons">
                             <form class="table-action-form" action="{{ route('courses.course.assgin', ['id' => $courseId]) }}" method="post">
@@ -131,9 +131,9 @@
                                 @method('post')
                                 <input name="user_id" type="hidden" value="{{ $user->user_id }}">
                                 <input name="action" type="hidden" value="assign">
-                                <button type="submit" class="table-action-button confirm-button">{{ __('main.confirm') }}</button>
+                                <button type="submit" class="table-action-button confirm-button">Подтвердить</button>
                             </form>
-                            <button onclick="document.getElementById('assign-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">{{ __('main.cancel') }}</button>
+                            <button onclick="document.getElementById('assign-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Отменить</button>
                         </div>
                     </div>
                 </div>

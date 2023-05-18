@@ -8,10 +8,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/quizzes/style.css') }}">
     <title>Quiz results</title>
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+
+
 </head>
 <body>
+@component('components.aside')
+@endcomponent
     <div class="container">
-        <div id="result-bar" class="justify-center flex-column">
+        <div id="result-bar" class="justify-start flex-column">
             <div class="result-container">
             </div>
         </div>
@@ -31,20 +36,20 @@
         let result = await response.json();
         let resultContainer = document.querySelector('.result-container');
         resultContainer.innerHTML += `<p class="result-text">
-                        You answered ${result.count_correct_questions} out of ${result.count_questions} questions correctly
+                        Вы ответили правильно на ${result.count_correct_questions} вопрос(-а)(-ов) из ${result.count_questions}
                     </p>
                     <p class="result-text">
-                        To successfully pass the quiz, you need to correctly answer ${result.count_questions_to_pass} questions
+                        Для успешного прохождения необходимо ответить правильно на ${result.count_questions_to_pass} вопрос(-а)(-ов)
                     </p>`;
 
         if (result.count_correct_questions < result.count_questions_to_pass) {
             resultContainer.innerHTML += `<p class="result-text incorrect-text">
-                        Failed
-                    </p> <p style="text-align:center; "> <a href="{{ route('courses.play', ['id' => $id]) }}">Go to course</a> <p>`;
+                        Провалено
+                    </p> <p style="text-align:center; "> <a href="{{ route('courses.play', ['id' => $id]) }}">Вернуться к курсу→</a> <p>`;
         } else {
             resultContainer.innerHTML += `<p class="result-text correct-text">
-                        Passed
-                    </p> <p style="text-align:center; "> <a href="{{ route('courses.play', ['id' => $id]) }}">Go to course</a> <p>`;
+                        Пройдено
+                    </p> <p style="text-align:center; "> <a href="{{ route('courses.play', ['id' => $id]) }}">Вернуться к курсу→</a> <p>`;
         }
     }
 

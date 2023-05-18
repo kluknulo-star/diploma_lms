@@ -7,14 +7,14 @@
     font-family: Scandia-Regular;
 }
 body {
-    background: #171923;
-    color: rgba(181, 181, 189, 0.9);
+    background: rgba(239, 239, 235, 0.2);
+    color: #171923;
     font-family: Scandia-Regular, sans-serif;
     font-size: 14px;
     position: relative;
 }
 .container {
-    padding: 80px 240px 0 400px;
+    padding: 40px 240px 0 400px;
 }
 .logo {
     font-size: 36px !important;
@@ -25,7 +25,7 @@ body {
 }
 .h1 {
     font-size: 42px;
-    color: whitesmoke;
+    /*color: whitesmoke;*/
     font-weight: bold;
 }
 .h1 i {
@@ -33,22 +33,30 @@ body {
 }
 .h2 {
     font-size: 36px;
-    color: whitesmoke;
+    /*color: whitesmoke;*/
 }
 .h3 {
     font-size: 24px;
-    color: whitesmoke;
+    /*color: whitesmoke;*/
+
+}
+.h4 {
+    font-size: 18px;
+    /*color: whitesmoke;*/
+
 }
 .input {
     padding: 10px;
     border-radius: 6px;
-    background: #12141c;
-    border: 1px solid #4a5568;
-    color: whitesmoke;
+    background: #f8f8f8;
+    border: 1px solid #b6b4b4;
+
+    color: #12141c;
     transition: .2s;
 }
 .input:focus {
-    border: 1px solid whitesmoke;
+    border: 1px solid #4a5568;
+    /*border: 1px solid whitesmoke;*/
 }
 ::placeholder {
     font-family: Scandia-Regular, sans-serif;
@@ -63,15 +71,15 @@ a {
     color: #eb4432 !important;
 }
 .classic-box {
-    background: #12141c;
+    background: #fff;
     border-radius: 10px;
-    padding: 40px 50px;
-    color: whitesmoke;
-    border: 1px solid #4a5568;
+    padding: 20px 25px;
+    color: #12141c;
+    border: 1px solid rgba(74, 85, 104, 0.42);
     position: relative;
 }
 .text {
-    color: rgba(181, 181, 189, 0.9);
+    color: black;
 }
 .mb15 {
     margin-bottom: 15px;
@@ -90,6 +98,7 @@ a {
     width: fit-content;
 }
 .rounded-blue-button,
+.rounded-white-button,
 .rounded-black-button,
 .rounded-red-button,
 .rounded-green-button,
@@ -108,9 +117,16 @@ a {
 .rounded-red-button {
     background: #eb4432;
 }
+a.rounded-red-button {
+    color: white !important;
+}
+
+
 .rounded-black-button {
+    display: inline-block;
     border: 1px solid #4a5568;
-    background: #171923;
+    background: #2d2f31;
+    color: white !important;
     transition: .2s;
 }
 .rounded-black-button:active {
@@ -118,13 +134,15 @@ a {
 }
 .rounded-blue-button {
     background: #4b5fc4;
+    color: white !important;
 }
 .rounded-green-button {
     background: #5ca143;
 }
 .rounded-yellow-button {
-    background: #c4aa33;
+    background: #d99e1d;
 }
+
 .flex {
     display: flex;
     flex-direction: row !important;
@@ -152,8 +170,8 @@ a {
     max-height: 150px!important;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(235, 68, 50, 0.7);
-    border: 5px solid #171923;
+    background-color: rgba(47, 46, 46, 0.7);
+    border: 5px solid #ffffff;
     background-clip: padding-box;
     -webkit-border-radius: 1em;
     -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025);
@@ -174,19 +192,21 @@ a {
 }
 .select {
     padding: 10px;
-    background-color: #12141c;
-    border: 1px solid #4a5568;
+    /*background-color: #12141c;*/
+    /*border: 1px solid #4a5568;*/
     border-radius: 10px;
-    color: whitesmoke;
+    border: 1px solid #b6b4b4;
+
+    /*color: whitesmoke;*/
 }
 .whitesmoke-text {
-    color: whitesmoke !important;
+    /*color: whitesmoke !important;*/
 }
 .dark-text {
     color: #12141c !important;
 }
 .yellow-text {
-    color: #c4aa33;
+    color: #d99e1d;
 }
 .change-lang-button {
     position: absolute;
@@ -206,10 +226,10 @@ a {
 }
 .success {
     position: fixed;
-    left: 900px;
-    top: 75px;
+    left: 800px;
+    top: 10px;
     padding: 15px;
-    background-color: rgba(143, 215, 83, 0.65);
+    background-color: rgb(74, 166, 81, 0.95);
     border-radius: 6px;
     border: 1px solid #62EB32;
     z-index: 100;

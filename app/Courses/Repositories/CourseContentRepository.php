@@ -36,6 +36,6 @@ class CourseContentRepository
 
     public function restoreStatement($sectionId)
     {
-        return ItemsStats::where('item_id', $sectionId)->firstOrFail()->restore();
+        return optional(ItemsStats::where('item_id', $sectionId)->first())->restore();
     }
 }

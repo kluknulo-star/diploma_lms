@@ -6,34 +6,46 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="{{ url('css/quizzes/style.css') }}">
+{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
+
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+
     <title>Edit quiz</title>
 </head>
 <body>
-<p style="text-align: center;">
-    <a href="{{ route('courses.edit.section', ['id' => $id, 'section_id' => $section_id]) }}">Back</a>
+
+@component('components.aside')
+@endcomponent
+<p style="text-align: center; padding-top: 20px;">
+    <a href="{{ route('courses.edit.section', ['id' => $id, 'section_id' => $section_id]) }}">Назад к курсу→</a>
 </p>
 <div class="container">
-    <div class="list">
+    <div class="list list-none">
         @forelse($questions as $question)
             <div class="list-item">
                 <div class="list-item-question">{{ $question->question_body }}</div>
                 <div class="list-item-question-id" hidden>{{ $question->question_id }}</div>
-                <a href="{{ route('quiz.options.show', ['id' => $id, 'section_id' => $section_id, 'quiz' => $quiz, 'question' => $question->getKey()]) }}">edit</a>
+                <a href="{{ route('quiz.options.show', ['id' => $id, 'section_id' => $section_id, 'quiz' => $quiz, 'question' => $question->getKey()]) }}">Редактировать</a>
             </div>
         @empty
 
         @endforelse
     </div>
+
     <div class="form">
         <textarea class="question"></textarea>
-        <div class="buttons">
-            <button class="add-question">add question</button>
-            <button class="cancel-question">cancel</button>
+        <div class="flex">
+            <button class="add-question bg-gray-900 text-white p-3 m-2">Добавить</button>
+            <button class="cancel-question bg-red-600 text-white p-3 m-2">Отменить</button>
         </div>
     </div>
-    <button class="add-btn">Add</button>
-    <button type="button" class="save-changes" onclick="saveChanges()">Save changes</button>
+    <div class="flex">
+        <button class="add-btn bg-gray-900 text-white p-3 m-2">Добавить вопрос</button>
+        <button type="button" class="save-changes bg-green-700 text-white p-3 m-2" onclick="saveChanges()">Сохранить</button>
+    </div>
+
 </div>
 <script>
     let quizList = document.querySelectorAll('.list');

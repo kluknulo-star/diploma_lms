@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+{{--    @vite(['resources/css/app.scss'])--}}
 
     <script src="https://kit.fontawesome.com/9982e2a196.js" crossorigin="anonymous"></script>
 
@@ -18,6 +19,6 @@
 </head>
 <body>
 
-<a href="{{ route('change.language') }}" class="change-lang-button">
-    <i class="fa-solid fa-globe"></i>
-</a>
+{{--<a href="{{ route('change.language') }}" class="change-lang-button">--}}
+{{--    <i class="fa-solid fa-globe"></i>--}}
+{{--</a>--}}

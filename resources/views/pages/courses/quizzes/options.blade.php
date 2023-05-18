@@ -8,13 +8,21 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url('css/quizzes/style.css') }}">
     <title>Question options</title>
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+
 </head>
 <body>
-<p style="text-align: center;">
-    <a href="{{ route('quiz.questions.show', ['id' => $id, 'section_id' => $section_id, 'quiz' => $quiz]) }}">Back</a>
+@component('components.aside')
+@endcomponent
+<br>
+<p style="text-align: center; padding-top: 20px">
+    <a href="{{ route('quiz.questions.show', ['id' => $id, 'section_id' => $section_id, 'quiz' => $quiz]) }}">Вернуться→</a>
 </p>
+
     <div class="container">
+        <div class="list-item-question">{{ $question_body }}</div>
         <div class="form">
+
             <select id="options">
                 @forelse($options as $option)
                     <option class="quiz-option" {{ $option->is_correct ? 'selected' : '' }} value='{{ $option->option_body }}'>{{ $option->option_body }}</option>
@@ -22,9 +30,9 @@
                 @endforelse
             </select>
             <input type="text" class="optionInput">
-            <button type="button" class="deleteOption" name="deleteOption" style="display:none">delete option</button>
-            <button type="button" class="addOption" name="addOption" onclick="addOption();">new option</button>
-            <button type="button" class="saveChanges" name="saveChanges" onclick="saveChanges();">save changes</button>
+            <button type="button" class="deleteOption" name="deleteOption" style="display:none; background: #eb4432">Удалить вариант</button>
+            <button type="button" class="addOption" name="addOption" onclick="addOption();">Добавить</button>
+            <button type="button" class="saveChanges" name="saveChanges" onclick="saveChanges();">Сохранить</button>
         </div>
     </div>
 <script>

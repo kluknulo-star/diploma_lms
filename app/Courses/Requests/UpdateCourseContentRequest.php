@@ -3,6 +3,7 @@
 namespace App\Courses\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class UpdateCourseContentRequest extends FormRequest
 {
@@ -26,7 +27,19 @@ class UpdateCourseContentRequest extends FormRequest
         return [
 //            'sectionType' => 'required',
             'sectionTitle' => 'required|max:70',
-            'sectionContent' => 'required|max:2048',
+            'sectionContent' => 'nullable|max:2048',
+            'video' => [
+                'nullable',
+//                File::default()->max(50480),
+//                'mimes:mp4,avi,mov,webm,mkv',
+//                'max:50840'
+            ],
+            'image' => [
+                'nullable',
+//                File::default()->max(2480),
+//                'image',
+            ],
+            'count_questions_to_pass' => 'nullable|int',
         ];
     }
 }

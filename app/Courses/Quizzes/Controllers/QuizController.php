@@ -3,6 +3,7 @@
 namespace App\Courses\Quizzes\Controllers;
 
 
+use App\Courses\Quizzes\Models\Question;
 use App\Courses\Quizzes\Models\Quiz;
 use App\Courses\Services\QuizService;
 use App\Http\Controllers\Controller;
@@ -85,8 +86,9 @@ class QuizController extends Controller
             ->where('question_id', $questionId)
             ->first()
             ->options;
+        $question_body = Question::find($questionId)->question_body;
 
-        return view('pages.courses.quizzes.options', ['id' => $courseId, 'section_id' => $sectionId, 'options' => $options, 'quiz' => $quizId, 'question' => $questionId]);
+        return view('pages.courses.quizzes.options', ['id' => $courseId, 'section_id' => $sectionId, 'options' => $options, 'quiz' => $quizId, 'question' => $questionId, 'question_body' => $question_body]);
     }
 
     public function storeOptions(Request $request, int $courseId, int $sectionId, int $quizId, int $questionId)

@@ -10,10 +10,10 @@
             <div class="success">{{ session()->get('success') }}</div>
         @endif
         <div class="courses__title h1 flex flex-just-spbtw w1200">
-            {{ __('main.assigned') }} {{ __('main.courses') }}
+            Назначенные курсы
 
             <form action="{{ route('courses.assignments') }}" method="get" class="courses__form-search">
-                <input name="search" type="text" placeholder="{{ __('main.search') }}" class="courses__input-search">
+                <input name="search" type="text" placeholder="Найти" class="courses__input-search">
                 <button type="submit" class="courses__button-search"><i class="fas fa-search"></i></button>
             </form>
 
@@ -26,14 +26,14 @@
                     <div class="courses__course-title h3 mb20">{{ $course->title }}</div>
                     <div
                         class="courses__course-description mb30">{{ Str::limit($course->description, 100, '...') }}</div>
-                    <div class="courses__course-author">{{ __('main.author') }}: <a
+                    <div class="courses__course-author">Автор: <a
                             href="{{ route('users.show', ['id' => $course->author_id]) }}">{{ $course->author->email }}</a>
                     </div>
                     <div class="courses__course-assign-count"><i class="fa-solid fa-user"></i> {{ $course->assigned_users_count }}</div>
                     <a href="{{ route('courses.play', ['id' => $course->course_id]) }}" class="courses__course-play"><i class="fas fa-play"></i></a>
                 </div>
             @empty
-                {{ __('main.assigned') }} {{ __('main.courses') }} {{ __('main.notFound') }}
+                Курсов не назначено
             @endforelse
         </div>
     </div>

@@ -28,7 +28,7 @@
                         @yield('message')
                     </div>
 
-                    <a class="ml-4 text-lg uppercase tracking-wider" href="{{ route('users') }}">go home</a>
+                    <a class="ml-4 text-lg uppercase tracking-wider" href="{{ route('users') }}">Перейти на главную</a>
                 </div>
             </div>
         </div>

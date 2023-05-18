@@ -1,6 +1,6 @@
 body {
-    background: #171923;
-    color: rgba(181, 181, 189, 0.9);
+    background: rgba(239, 239, 235, 0.2);
+    color: #171923;
     font-family: Scandia-Regular, sans-serif;
     font-size: 2rem;
     position: relative;
@@ -15,37 +15,36 @@ body {
 .container {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /*display: flex;*/
     max-width: 80rem;
     margin: 0 auto;
 }
 
-.flex-column {
-    display: flex;
-    flex-direction: column;
-}
+/*.flex-column {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
-.justify-center {
-    justify-content: center;
-}
+/*.justify-center {*/
+/*    justify-content: center;*/
+/*}*/
 
 .choice-container {
     display: flex;
     margin-bottom: 0.8rem;
     width: 100%;
     border-radius: 10px;
-    background: DarkGray;
+    border: 1px solid #777474;
+    background: #f3f2f2;
 }
 
 .result-container {
     display: block;
-    width: 700px;
-    height: 400px;
-    border: 5px solid DarkGray;
+    width: 600px;
+    /*height: 400px;*/
+    border: 1px solid DarkGray;
     border-radius: 10px;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px 20px 20px;
     margin: 20px auto;
 }
 
@@ -75,7 +74,7 @@ body {
 }
 
 .correct {
-    background: darkgreen;
+    background: rgba(0, 100, 0, 0.40);
 }
 .correct-text {
     color: darkgreen;
@@ -83,7 +82,7 @@ body {
 
 
 .incorrect {
-    background: #902224;
+    background: rgba(144, 34, 36, 0.4);
 }
 
 .incorrect-text {
@@ -142,11 +141,12 @@ body {
 
 #options {
     border-radius: 10px 10px 10px 10px;
-    background-color: #12141c;
+    background-color: #e4e4e7;
     padding: 10px;
     height: 60px;
     margin-right: 10px;
-    color: whitesmoke;
+    color: black;
+    border: 1px solid gray;
     cursor: pointer;
     font-size: 17px;
 }
@@ -155,6 +155,7 @@ button {
     background-color: #12141c;
     color: whitesmoke;
     padding: 6px;
+    margin: 5px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -170,9 +171,9 @@ button:hover {
 .optionInput {
     border-radius: 10px 10px 10px 10px;
     margin-right: 10px;
-    background-color: #12141c;
+    background-color: #e4e4e7;
     padding: 15px;
     height: 60px;
-    color: whitesmoke;
+    color: black;
     font-size: 17px;
 }

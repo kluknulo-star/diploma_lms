@@ -1,22 +1,22 @@
 <?php
 
 return [
-    'restoreUser' => 'User successfully restored.',
-    'destroyUser' => 'User successfully deleted.',
-    'storeUser' => 'User successfully created.',
-    'updateUser' => 'User successfully updated.',
-    'updateAccount' => 'Account successfully updated.',
+    'restoreUser' => 'Пользователь успешно восстановлен',
+    'destroyUser' => 'Пользователь удален',
+    'storeUser' => 'Пользователь успешно создан',
+    'updateUser' => 'Пользователь успешно обновлен',
+    'updateAccount' => 'Аккаунт успешно обновлен',
 
-    'restoreCourseContent' => 'Course content successfully restored.',
-    'destroyCourseContent' => 'Course content successfully deleted.',
-    'storeCourseContent' => 'Course content successfully created.',
-    'updateCourseContent' => 'Course content successfully updated.',
+    'restoreCourseContent' => 'Материал курса восстановлен',
+    'destroyCourseContent' => 'Материал курса удален',
+    'storeCourseContent' => 'Материал курса успешно',
+    'updateCourseContent' => 'Материал курса успешно обновлен',
 
-    'restoreCourse' => 'Course successfully restored.',
-    'destroyCourse' => 'Course successfully deleted.',
-    'storeCourse' => 'Course successfully created.',
-    'updateCourse' => 'Course successfully updated.',
+    'restoreCourse' => 'Курс восстановлен',
+    'destroyCourse' => 'Курс удален',
+    'storeCourse' => 'Курс успешно создан',
+    'updateCourse' => 'Курс успешно обновлен',
 
-    'deductCourse' => 'Student successfully deduct.',
-    'assignCourse' => 'Student successfully assign.',
+    'deductCourse' => 'Студент отчислен',
+    'assignCourse' => 'Студент назначен',
 ];

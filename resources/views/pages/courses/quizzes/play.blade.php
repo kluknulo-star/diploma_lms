@@ -8,9 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>Quiz</title>
     <link rel="stylesheet" type="text/css" href="{{ url('css/quizzes/style.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
 </head>
 <body>
+@component('components.aside')
+@endcomponent
 <div class="container">
     <div id="game" class="justify-center flex-column">
     </div>
@@ -64,8 +67,8 @@
             currentQuestionNumber++;
             const questionsIndex = 0
             let currentQuestion = questions[questionsIndex];
-            game.innerHTML += `<p class="progress-bar">question ${currentQuestionNumber} of ${countQuestions}</p>
-                                <h2 id="question">${currentQuestion.question}</h2>`;
+            game.innerHTML += `<p class="progress-bar">Вопрос ${currentQuestionNumber} из ${countQuestions}</p>
+                                <h2 id="question">${currentQuestion.question}</h2><br>`;
 
             for (let key in currentQuestion.options) {
                 if (currentQuestion.options.hasOwnProperty(key)) {

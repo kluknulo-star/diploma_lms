@@ -2,6 +2,8 @@
 
 namespace App\Courses\Controllers;
 
+use App\Courses\Models\CourseItems;
+use App\Courses\Quizzes\Models\Quiz;
 use App\Courses\Requests\CreateCourseContentRequest;
 use App\Courses\Requests\UpdateCourseContentRequest;
 use App\Courses\Services\CourseContentService;
@@ -9,6 +11,7 @@ use App\Courses\Services\CourseService;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class CourseContentController extends Controller
 {
@@ -24,15 +27,24 @@ class CourseContentController extends Controller
         $course = $this->courseService->getCourse($courseId);
         $this->authorize('update', [$course]);
         $section = $course->content->where('item_id', $sectionId)->first();
-        return view('pages.courses.sections.edit', compact('section', 'courseId'));
+
+        $quizCount = 0;
+        if ($section->type->type == 'Тест'){
+            $quizId = json_decode(CourseItems::find($sectionId)->item_content, true)['quiz_id'];
+            $quizCount = Quiz::find($quizId)->count_questions_to_pass;
+        }
+
+        return view('pages.courses.sections.edit', compact('section', 'courseId', 'quizCount'));
     }
 
     public function update(UpdateCourseContentRequest $request, $courseId, $sectionId): RedirectResponse
     {
         $course = $this->courseService->getCourse($courseId);
+
         $this->authorize('update', [$course]);
+
         $validated = $request->validated();
-        $this->courseContentService->update($validated, $sectionId);
+        $this->courseContentService->update($validated, $sectionId, $courseId);
         return redirect()->route('courses.edit', [$courseId])
                              ->with(['success' => __('success.'.__FUNCTION__.'CourseContent')]);
     }
@@ -55,11 +67,17 @@ class CourseContentController extends Controller
                              ->with(['success' => __('success.'.__FUNCTION__.'CourseContent')]);
     }
 
-    public function restore($courseId, $sectionId)
+    public function restore(int $courseId,int $sectionId)
     {
+
+
         $course = $this->courseService->getCourse($courseId);
+
+
         $this->authorize('restore', [$course]);
+
         $this->courseContentService->restore($sectionId);
+//        dd($courseId, $sectionId);
         return redirect()->route('courses.edit', [$courseId])
                              ->with(['success' => __('success.'.__FUNCTION__.'CourseContent')]);
     }

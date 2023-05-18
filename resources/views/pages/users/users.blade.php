@@ -6,27 +6,27 @@
 <div class="container">
     <div class="users w1200">
         <div class="users__title h1">
-            {{ __('main.students') }}
+            Пользователи
             <div class="users__after-title-links">
                 <a href="{{ route('users.create') }}" class="users__title-link">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
             <form action="{{ route('users') }}" method="get" class="users__form-search">
-                <input name="search" type="text" placeholder="Search" class="users__input-search">
+                <input name="search" type="text" placeholder="Найти" class="users__input-search">
                 <button type="submit" class="users__button-search"><i class="fas fa-search"></i></button>
             </form>
         </div>
         <table class="users__table classic-box">
             <thead>
                 <tr class="users__tr users__tr_head">
-                    <th class="users__td users__td-img">{{ __('main.avatar') }}</th>
+                    <th class="users__td users__td-img">Фото</th>
                     <th class="users__td">ID</th>
-                    <th class="users__td">{{ __('main.email') }}</th>
-                    <th class="users__td">{{ __('main.surname') }}</th>
-                    <th class="users__td">{{ __('main.name') }}</th>
-                    <th class="users__td">{{ __('main.patronymic') }}</th>
-                    <th class="users__td"></th>
+                    <th class="users__td">Почта</th>
+                    <th class="users__td">Фамилия</th>
+                    <th class="users__td">Имя</th>
+                    <th class="users__td">Отчество</th>
+                    <th class="users__td">Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 @empty
-                    Пользователей пока нету ;(
+                    Пользователи отсутствуют
                 @endforelse
 
                 {{ $users->withQueryString()->links() }}
