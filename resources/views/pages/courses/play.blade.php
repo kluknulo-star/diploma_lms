@@ -38,7 +38,7 @@
                         courseId="{{$course->course_id}}"
                         @if(in_array($element->item_id, $myCourseProgress['launched']))
                             disabled
-                        style="padding: 5px; background: rgba(0,0,0,0); color: #d99e1d !important;"
+                        style="padding: 5px; background: rgba(0,0,0,0); color: #15803D !important;"
                         @else
                             style="padding: 5px; background: rgba(0,0,0,0); color: #eb4432;"
                     @endif>
@@ -50,17 +50,22 @@
                         verb="passed"
                         sectionId="{{$element->item_id}}"
                         courseId="{{$course->course_id}}"
-                        @if(in_array($element->item_id, $myCourseProgress['passed'])))
+                        @if(in_array($element->item_id, $myCourseProgress['passed']))
                         disabled
-                        style="padding: 5px; background: rgba(0,0,0,0); color: #d99e1d !important;"
+                        style="padding: 5px; background: rgba(0,0,0,0); color: #15803D !important;"
                         @else
+                            {{($element->type->type == 'Тест') ? 'disabled' : ''}}
                             style="padding: 5px; background: rgba(0,0,0,0); color: #eb4432;"
                     @endif>
                     <i class="fas fa-check-double"></i>
                 </button>
 
                 @if($element->type->type == 'Тест')
-                    <a class="rounded-red-button" href="{{ route('quiz.play', ['id' => $course->getKey(), 'section_id' => $element->getKey(), 'quiz' => json_decode($element->item_content, true)['quiz_id']]) }}">Пройти тест</a>
+                    @if(in_array($element->item_id, $myCourseProgress['passed']))
+                        <a class="rounded-green-button" href="{{ route('quiz.play', ['id' => $course->getKey(), 'section_id' => $element->getKey(), 'quiz' => json_decode($element->item_content, true)['quiz_id']]) }}">Пройти заново</a>
+                    @else
+                        <a class="rounded-red-button" href="{{ route('quiz.play', ['id' => $course->getKey(), 'section_id' => $element->getKey(), 'quiz' => json_decode($element->item_content, true)['quiz_id']]) }}">Пройти тест</a>
+                    @endif
                 @endif
 
                 <form>
@@ -79,7 +84,9 @@
                 @elseif($element->type->type == 'Изображение')
                     <img src="{{url(json_decode($element->item_content))}}" alt="img" width="600" style="border-radius: 10px">
                 @elseif($element->type->type == 'Видео')
-                    <video src="{{url(json_decode($element->item_content))}}" style="border-radius: 10px" width="600" controls></video>
+                    <video style="border-radius: 10px" width="600" controls="controls">
+                        <source src="{{url(json_decode($element->item_content))}}">
+                    </video>
                 @endif
             </div>
         @endif
@@ -124,7 +131,7 @@
             timeout: 500,
             success: function (html) {
                 if (verb === 'passed') {
-                    $('#' + sectionId + 'passed').text(html).prop('disabled', true).css('color', '#d99e1d');
+                    $('#' + sectionId + 'passed').text(html).prop('disabled', true).css('color', '#15803D');
                     setTimeout(() => {
                         $('#' + sectionId + 'passed').html('<i class="fas fa-check-double"></i>');
                     }, 3000);
@@ -132,7 +139,7 @@
                     myCourseProgressPassed.push(sectionId);
                 }
                 if (verb === 'launched') {
-                    $('#' + sectionId + 'launched').text(html).prop('disabled', true).css('color', '#d99e1d');
+                    $('#' + sectionId + 'launched').text(html).prop('disabled', true).css('color', '#15803D');
                     setTimeout(() => {
                         $('#' + sectionId + 'launched').html('<i class="fas fa-check"></i>');
                     }, 3000);
@@ -161,9 +168,9 @@
             },
             timeout: 500,
             success: function (html) {
-                $('#send-stmt-passed-button').text(html).prop('disabled', true).css('background', '#5ca143');
+                $('#send-stmt-passed-button').text(html).prop('disabled', true).css('background', '#15803D');
                 setTimeout(() => {
-                    $('#send-stmt-passed-button').text('{{ __('main.courseCompleted') }}');
+                    $('#send-stmt-passed-button').text('Курс завершен');
                 }, 1500);
             },
             error: function (jqXhr, textStatus, errorMessage) {

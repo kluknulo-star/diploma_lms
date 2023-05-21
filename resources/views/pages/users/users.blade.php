@@ -69,16 +69,16 @@
 
                     <div class="modal" id="delete-modal-{{ $user->user_id }}">
                         <div class="modal-box">
-                            <p class="modal-text modal-text-delete mb20 mr20">You sure to <span>delete</span> user id{{ $user->user_id }}?</p>
+                            <p class="modal-text modal-text-delete mb20 mr20">Вы уверены, что хотите  <span>удалить</span> пользователя с id {{ $user->user_id }}?</p>
 
                             <div class="modal-buttons">
                                 <form class="table-action-form" action="{{ route('users.delete', ['id' => $user->user_id]) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input name="user_id" type="hidden" value="{{ $user->user_id }}">
-                                    <button type="submit" class="table-action-button confirm-button">Confirm</button>
+                                    <button type="submit" class="table-action-button confirm-button">Подтвердить</button>
                                 </form>
-                                <button onclick="document.getElementById('delete-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Cancel</button>
+                                <button onclick="document.getElementById('delete-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Отклонить</button>
                             </div>
 
                         </div>
@@ -86,16 +86,16 @@
 
                     <div class="modal" id="restore-modal-{{ $user->user_id }}">
                         <div class="modal-box">
-                            <p class="modal-text modal-text-restore mb20 mr20">You sure to <span>restore</span> user id{{ $user->user_id }}?</p>
+                            <p class="modal-text modal-text-restore mb20 mr20"> Вы уверены, что хотите <span>вернуть</span> пользователя с id {{ $user->user_id }}?</p>
 
                             <div class="modal-buttons">
                                 <form class="table-action-form" action="{{ route('users.restore', ['id' => $user->user_id]) }}" method="post">
                                     @csrf
                                     @method('post')
                                     <input name="user_id" type="hidden" value="{{ $user->user_id }}">
-                                    <button type="submit" class="table-action-button confirm-button">Confirm</button>
+                                    <button type="submit" class="table-action-button confirm-button">Подтвердить</button>
                                 </form>
-                                <button onclick="document.getElementById('restore-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Cancel</button>
+                                <button onclick="document.getElementById('restore-modal-<?= $user->user_id ?>').style.display = 'none'" class="table-action-button cancel-button">Отклонить</button>
                             </div>
                         </div>
                     </div>

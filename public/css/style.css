@@ -428,6 +428,7 @@ a.courses__course-play {
     padding: 20px;
     border: 1px solid #4a5568;
     border-radius: 10px;
+    box-shadow: 0 2px 20px #0000001c;
     /*background-color: #12141c;*/
 }
 .courses__course-author {
@@ -501,7 +502,7 @@ table, th, td {
     font-size: 22px;
 }
 .modal-text-delete span {
-    color: #eb4432;
+    color: #f8220d;
 }
 .modal-text-restore span {
     color: #c4aa33;

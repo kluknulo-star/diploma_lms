@@ -35,6 +35,8 @@
         let game = document.getElementById("game");
         let answer = '';
         let correctAnswersCount = 0;
+        let correctAnswersIndex = [];
+        let wrongAnswersIndex = [];
         let currentQuestionNumber = 0;
 
         startQuiz = () => {
@@ -46,6 +48,8 @@
             if (questions.length === 0) {
                 let $json = JSON.stringify({
                     'correctAnswersCount': correctAnswersCount,
+                    'correctAnswersIndex': correctAnswersIndex,
+                    'wrongAnswersIndex': wrongAnswersIndex,
                 });
 
                 let request = fetch("{{ route('quiz.results.store', ['id' => $id, 'section_id' => $section_id, 'quiz' => $quiz]) }}", {
@@ -89,8 +93,12 @@
                     let classToApply = 'incorrect';
 
                     if (selectedAnswer === answer) {
+                        correctAnswersIndex.push(currentQuestionNumber);
                         correctAnswersCount ++;
                         classToApply = 'correct';
+                    }
+                    else{
+                        wrongAnswersIndex.push(currentQuestionNumber);
                     }
 
                     selectedChoice.parentElement.classList.add(classToApply);
@@ -101,7 +109,6 @@
                     }, 1000);
                 });
             });
-
 
             questions.splice(questionsIndex, 1);
         }

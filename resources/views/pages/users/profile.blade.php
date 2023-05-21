@@ -31,7 +31,7 @@
                     <form method="post" action="{{ route('users.assign.teacher', ['id' => $user->user_id]) }}">
                         @csrf
                         @method('patch')
-                        <button type="submit" class="rounded-black-button button mb15">{{ __('main.assign') }} {{ __('main.userVin') }} {{ __('main.teacherTvor') }}</button>
+                        <button type="submit" class="rounded-black-button button mb15">Назначить учителем</button>
                     </form>
                 @endif
                 <div class="text">LMS роль:
@@ -42,21 +42,21 @@
                     @endif</div>
             </div>
 
-            @if(auth()->id() == $user->user_id && auth()->user()->is_teacher == 1)
-            <div class="profile__column_courses">
-                <p class="h3 mb30">Экспортировать в Excel</p>
-                <div class="mb30">
-                    <a class="rounded-black-button" href="{{ route('courses.export', ['type' => 'all']) }}">Экспортировать все курсы</a>
-                    <a class="rounded-black-button" href="{{ route('courses.export', ['type' => 'own']) }}">Экспортировать только мои курсы</a>
-                </div>
-                @foreach($exports as $export)
-                    <form class="mb15" method="post" action="{{ route('courses.export.download', ['id' => $export->export_id]) }}">
-                        @csrf
-                        <button class="button rounded-red-button">Скачать {{ $export->export_file_path }}</button>
-                    </form>
-                @endforeach
-            </div>
-            @endif
+{{--            @if(auth()->id() == $user->user_id && auth()->user()->is_teacher == 1)--}}
+{{--            <div class="profile__column_courses">--}}
+{{--                <p class="h3 mb30">Экспортировать в Excel</p>--}}
+{{--                <div class="mb30">--}}
+{{--                    <a class="rounded-black-button" href="{{ route('courses.export', ['type' => 'all']) }}">Экспортировать все курсы</a>--}}
+{{--                    <a class="rounded-black-button" href="{{ route('courses.export', ['type' => 'own']) }}">Экспортировать только мои курсы</a>--}}
+{{--                </div>--}}
+{{--                @foreach($exports as $export)--}}
+{{--                    <form class="mb15" method="post" action="{{ route('courses.export.download', ['id' => $export->export_id]) }}">--}}
+{{--                        @csrf--}}
+{{--                        <button class="button rounded-red-button">Скачать {{ $export->export_file_path }}</button>--}}
+{{--                    </form>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--            @endif--}}
         </div>
     </div>
 </div>

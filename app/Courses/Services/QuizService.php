@@ -2,16 +2,19 @@
 
 namespace App\Courses\Services;
 
-use App\Courses\Quizzes\Models\Answer;
+use App\Courses\Helpers\ClientLRS;
+use App\Courses\Helpers\LocalStatements;
 use App\Courses\Quizzes\Models\Option;
 use App\Courses\Quizzes\Models\Question;
 use App\Courses\Quizzes\Models\Quiz;
-use Illuminate\Database\Eloquent\Collection;
+use App\Users\Models\User;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class QuizService
 {
+    public function __construct(private CourseService $courseService, private StatementService $statementService)
+    {
+    }
     public function getQuiz(int $id, array $relations=[])
     {
         return Quiz::with($relations)->find($id);
@@ -68,6 +71,7 @@ class QuizService
 
     public function storeResults(Quiz $quiz, int $correctAnswersCount)
     {
+
         DB::table('quiz_results')->insert([
             'count_correct_questions' => $correctAnswersCount,
             'count_questions_to_pass' => $quiz->count_questions_to_pass,
@@ -75,6 +79,25 @@ class QuizService
             'quiz_id' => $quiz->getKey(),
             'user_id' => auth()->id(),
         ]);
+    }
+
+    public function sendResultToLRS(Quiz $quiz, int $correctAnswersCount, int $courseId, int $sectionId)
+    {
+        $course = $this->courseService->getCourse($courseId);
+        $allCourseContent = json_decode($course->content);
+        $section = $this->statementService->getSection($allCourseContent, $sectionId);
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        $statementLocalSend = new LocalStatements();
+        $verb = 'failed';
+        if ($correctAnswersCount >= $quiz->count_questions_to_pass)
+        {
+            $verb = 'passed';
+        }
+        $statementLocalSend->sendLocalStatement($user->user_id, $sectionId, $verb);
+        return ClientLRS::sendStatement($user, $verb, $course, $section);
     }
 
     public function retrieveResults(Quiz $quiz)

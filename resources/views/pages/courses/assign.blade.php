@@ -105,7 +105,7 @@
                 </tr>
                 <div class="modal" id="deduct-modal-{{ $user->user_id }}">
                     <div class="modal-box">
-                        <p class="modal-text modal-text-delete mb20 mr20">Вы уверены, что хотите отчислить с курса полльзователя  {{ $user->name }} ?</p>
+                        <p class="modal-text modal-text-delete mb20 mr20">Вы уверены, что хотите <span>отчислить</span> с курса полльзователя  {{ $user->name }} ?</p>
 
                         <div class="modal-buttons">
                             <form class="table-action-form" action="{{ route('courses.course.deduct', ['id' => $courseId]) }}" method="post">
@@ -123,7 +123,7 @@
 
                 <div class="modal" id="assign-modal-{{ $user->user_id }}">
                     <div class="modal-box">
-                        <p class="modal-text modal-text-restore mb20 mr20">Вы уверены, что хотите назначить на курс полльзователя  {{ $user->name }}?</p>
+                        <p class="modal-text modal-text-restore mb20 mr20">Вы уверены, что хотите <span>назначить</span> на курс полльзователя  {{ $user->name }}?</p>
 
                         <div class="modal-buttons">
                             <form class="table-action-form" action="{{ route('courses.course.assgin', ['id' => $courseId]) }}" method="post">
@@ -145,6 +145,7 @@
 
             </tbody>
         </table>
+        <br>
     </div>
 </div>
 

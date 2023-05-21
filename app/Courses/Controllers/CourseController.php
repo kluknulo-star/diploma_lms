@@ -19,8 +19,7 @@ class CourseController extends Controller
         private CourseService $courseService,
         private StatementService $statementsService,
         private CourseRepository $courseRepository,
-    )
-    {
+    ) {
     }
 
     public function showAssignedCourses(Request $request): View
@@ -44,13 +43,13 @@ class CourseController extends Controller
                 $this->courseRepository->createAssign($request->input('user_id'), $courseId);
             }
             return redirect()->route('courses.edit.assignments', ['id' => $courseId, 'state' => 'all'])
-                             ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+                ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
         }
 
         $emails = preg_split('/\n|\r\n?/', $request->input('studentEmails'));
         $this->courseService->assignMany($courseId, $emails);
         return redirect()->route('courses.edit.assignments', ['id' => $courseId, 'state' => 'already'])
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function deduct(Request $request, int $courseId): RedirectResponse
@@ -58,15 +57,19 @@ class CourseController extends Controller
         $userId = $request->input('user_id');
         $this->courseRepository->destroyAssignment($userId, $courseId);
         return redirect()->route('courses.edit.assignments', ['id' => $courseId, 'state' => 'already'])
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function play(int $courseId): View
     {
         $course = $this->courseService->getCourse($courseId);
         $this->authorize('view', [$course]);
-        $course->content = $course->content->where('deleted_at', NULL);
-        $myCourseProgress = $this->statementsService->getStudentLocalProgress(auth()->id(), $courseId, count($course->content));
+        $course->content = $course->content->where('deleted_at', null);
+        $myCourseProgress = $this->statementsService->getStudentLocalProgress(
+            auth()->id(),
+            $courseId,
+            count($course->content)
+        );
         return view('pages.courses.play', compact('course', 'myCourseProgress'));
     }
 
@@ -90,7 +93,7 @@ class CourseController extends Controller
         $validated = $request->validated();
         $this->courseRepository->getCourse($courseId)->update($validated);
         return redirect()->route('courses.edit', ['id' => $courseId])
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function create(): View
@@ -106,7 +109,7 @@ class CourseController extends Controller
         $validated['author_id'] = auth()->id();
         $this->courseRepository->store($validated);
         return redirect()->route('courses.own')
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function destroy(int $courseId): RedirectResponse
@@ -115,7 +118,7 @@ class CourseController extends Controller
         $this->authorize('delete', [$course]);
         $this->courseRepository->destroy($courseId);
         return redirect()->route('courses.own')
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function restore(int $courseId): RedirectResponse
@@ -124,7 +127,7 @@ class CourseController extends Controller
         $this->authorize('restore', [$course]);
         $this->courseRepository->restore($courseId);
         return redirect()->route('courses.own')
-                         ->with(['success' => __('success.'.__FUNCTION__.'Course')]);
+            ->with(['success' => __('success.' . __FUNCTION__ . 'Course')]);
     }
 
     public function statistics(int $courseId): View
@@ -139,6 +142,6 @@ class CourseController extends Controller
             'CourseAssigned' => $this->courseRepository->getAssignments($courseId),
             'SectionPassed' => $this->courseService->getPassedSectionsCount($courseId),
         ];
-        return view('pages.courses.statistics', compact('count', 'courseId'));
+        return view('pages.courses.statistics', compact('count', 'courseId', 'course'));
     }
 }
