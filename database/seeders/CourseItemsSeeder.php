@@ -51,7 +51,7 @@ class CourseItemsSeeder extends Seeder
         $quesion4Option3 = Option::insert(['question_id' => 4, 'is_correct'=>true, 'option_body'=>'SVI по умолчанию создается для VLAN 1 для администрирования коммутатора.']);
         $quesion4Option4 = Option::insert(['question_id' => 4, 'is_correct'=>false, 'option_body'=>'SVI может быть создан только для управляющей VLAN.']);
 
-        $data[] = [
+        CourseItems::insert([
             [
                 'course_id' => 1,
                 'type_id' => 1,
@@ -64,7 +64,7 @@ class CourseItemsSeeder extends Seeder
                 'course_id' => 1,
                 'type_id' => 2,
                 'title' => 'Последовательность загрузки коммутатора',
-                'item_content' => json_encode("storage/video/1/EXC73e4UOv6lfRde7nA5S1tYnFF7rICR7m4Zlkbu.mp4"),
+                'item_content' => json_encode('storage/video/1/EXC73e4UOv6lfRde7nA5S1tYnFF7rICR7m4Zlkbu.mp4'),
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
@@ -72,7 +72,7 @@ class CourseItemsSeeder extends Seeder
                 'course_id' => 1,
                 'type_id' => 3,
                 'title' => 'Принцп работы Telnet',
-                'item_content' => json_encode("storage/image/20/lzsPc6EMgZn2T6DKSBc1NGdQi7hhzdRfxiffjT0i.png"),
+                'item_content' => json_encode('storage/image/20/lzsPc6EMgZn2T6DKSBc1NGdQi7hhzdRfxiffjT0i.png'),
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
@@ -84,8 +84,7 @@ class CourseItemsSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
-
-        ];
+        ]);
 
 
 
