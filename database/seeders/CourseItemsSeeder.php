@@ -6,9 +6,9 @@ use App\Courses\Models\Course;
 use App\Courses\Models\CourseItems;
 use App\Courses\Models\TypeOfItems;
 use App\Courses\Quizzes\Models\Option;
+use App\Courses\Quizzes\Models\Question;
 use App\Courses\Quizzes\Models\Quiz;
 use Illuminate\Database\Seeder;
-use Symfony\Component\Console\Question\Question;
 
 class CourseItemsSeeder extends Seeder
 {
