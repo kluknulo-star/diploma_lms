@@ -90,7 +90,7 @@ class CourseItemsSeeder extends Seeder
 
         for ($i = 0; $i < $recordCount; $i++) {
             $data[] = [
-                'course_id' => rand(2,100),
+                'course_id' => rand(2,10),
                 'type_id' => 1,
                 'title' => fake()->text(90),
                 'item_content' => json_encode(fake()->text),
