@@ -91,8 +91,8 @@ class CourseItemsSeeder extends Seeder
 
         for ($i = 0; $i < $recordCount; $i++) {
             $data[] = [
-                'course_id' => Course::get('course_id')->random()->course_id,
-                'type_id' => TypeOfItems::where('type', 'Article')->first()->type_id,
+                'course_id' => rand(2,100),
+                'type_id' => TypeOfItems::where('type', 'Текст')->first()->type_id,
                 'title' => fake()->text(90),
                 'item_content' => json_encode(fake()->text),
                 'created_at' => NOW(),

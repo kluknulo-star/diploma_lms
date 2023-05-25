@@ -18,7 +18,7 @@ class CourseSeeder extends Seeder
     public function run()
     {
         $data = [];
-        $recordCount = 500;
+        $recordCount = 100;
 
         $data[] = [
             'title' => 'Введение в маршрутизацию, коммутацию  и беспроводные сети',
