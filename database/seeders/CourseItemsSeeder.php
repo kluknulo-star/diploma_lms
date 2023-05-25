@@ -80,7 +80,7 @@ class CourseItemsSeeder extends Seeder
                 'course_id' => 1,
                 'type_id' => 4,
                 'title' => 'Контрольная по модулю - Базовая конфигурация устройства',
-                'item_content' => json_encode(["quiz_id"=> 1]),
+                'item_content' => '{"quiz_id":1}',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
