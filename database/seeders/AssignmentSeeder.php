@@ -19,7 +19,7 @@ class AssignmentSeeder extends Seeder
         $data = [];
         $recordCount = 50;
 
-        $data[] = [
+        Assignment::insert([
             [
                 'student_id' => 1,
                 'course_id' => 1,
@@ -32,7 +32,7 @@ class AssignmentSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
-        ];
+        ]);
         for ($i = 0; $i < $recordCount; $i++) {
             $data[] = [
                 'student_id' => User::get('user_id')->random()->user_id,
