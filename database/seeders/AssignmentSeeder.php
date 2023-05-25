@@ -17,12 +17,26 @@ class AssignmentSeeder extends Seeder
     public function run()
     {
         $data = [];
-        $recordCount = 500;
+        $recordCount = 50;
 
+        $data[] = [
+            [
+                'student_id' => 1,
+                'course_id' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
+            [
+                'student_id' => 2,
+                'course_id' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
+        ];
         for ($i = 0; $i < $recordCount; $i++) {
             $data[] = [
                 'student_id' => User::get('user_id')->random()->user_id,
-                'course_id' => Course::get('course_id')->random()->course_id,
+                'course_id' => rand(1,5),
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ];

@@ -20,6 +20,13 @@ class CourseSeeder extends Seeder
         $data = [];
         $recordCount = 500;
 
+        $data[] = [
+            'title' => 'Введение в маршрутизацию, коммутацию  и беспроводные сети',
+            'author_id' => 1,
+            'description' => 'Курс посвящен технологиям коммутации и принципам работы маршрутизаторов для поддержки',
+            'created_at' => NOW(),
+            'updated_at' => NOW(),
+        ];
         for ($i = 0; $i < $recordCount; $i++) {
             $data[] = [
                 'title' => fake()->text(90),
