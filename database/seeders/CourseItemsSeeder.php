@@ -62,7 +62,7 @@ class CourseItemsSeeder extends Seeder
             ],
             [
                 'course_id' => 1,
-                'type_id' => 2,
+                'type_id' => 3,
                 'title' => 'Последовательность загрузки коммутатора',
                 'item_content' => json_encode("storage/video/1/EXC73e4UOv6lfRde7nA5S1tYnFF7rICR7m4Zlkbu.mp4"),
                 'created_at' => NOW(),
@@ -70,7 +70,7 @@ class CourseItemsSeeder extends Seeder
             ],
             [
                 'course_id' => 1,
-                'type_id' => 3,
+                'type_id' => 2,
                 'title' => 'Принцп работы Telnet',
                 'item_content' => json_encode("storage/image/1/lzsPc6EMgZn2T6DKSBc1NGdQi7hhzdRfxiffjT0i.png"),
                 'created_at' => NOW(),
