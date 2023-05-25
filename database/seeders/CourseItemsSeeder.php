@@ -56,7 +56,7 @@ class CourseItemsSeeder extends Seeder
                 'course_id' => 1,
                 'type_id' => 1,
                 'title' => 'Последовательность загрузки коммутатора',
-                'item_content' => json_encode($fakeText),
+                'item_content' => json_encode([$fakeText]),
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
