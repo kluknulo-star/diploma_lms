@@ -37,6 +37,7 @@ class QuizController extends Controller
                 $resp[] = (object)['question' => $question->question_body, 'options' => (object)$options];
             }
         });
+        shuffle($resp);
 
         return response()->json($resp);
     }
