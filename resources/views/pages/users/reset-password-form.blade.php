@@ -4,7 +4,7 @@
 <div class="welcome">
     <div class="welcome__container">
         <div class="welcome__logo logo h2">
-            AntiTutor
+            LMS
         </div>
         <div class="welcome__title h3" style="width: 500px; text-align: center">
             Hello, {{$user->email}}

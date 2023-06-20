@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="image/x-icon" rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <link sizes="120x120" rel="apple-touch-icon" href="{{asset('favicon.ico')}}">
-    <title>AntiTutor</title>
+    <title>LMS</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
