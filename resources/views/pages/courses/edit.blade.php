@@ -44,9 +44,9 @@
                 <form method="get" class="w24p" action="{{ route('courses.edit.assignments', ['id' => $course->course_id, 'state' => 'already']) }}">
                     <button type="submit" class="edit__button rounded-black-button button w100p mb15 whitesmoke-text">Зачисленные студенты</button>
                 </form>
-                <form method="get" class="w24p" action="{{ route('courses.statistics', ['id' => $course->course_id]) }}">
-                    <button type="submit" class="edit__button rounded-blue-button button w100p mb15 whitesmoke-text">Статистика прохождения</button>
-                </form>
+{{--                <form method="get" class="w24p" action="{{ route('courses.statistics', ['id' => $course->course_id]) }}">--}}
+{{--                    <button type="submit" class="edit__button rounded-blue-button button w100p mb15 whitesmoke-text">Статистика прохождения</button>--}}
+{{--                </form>--}}
                 <button class="edit__button rounded-red-button button w24p mb15" onclick="document.getElementById('delete-modal-<?= $course->course_id  ?>').style.display = 'flex'">
                     Удалить курс
                 </button>
