@@ -1,0 +1,37 @@
+networks:
+  proxynet:
+    name: proxynet
+    external: true
+  safespace:
+    name: safespace
+    external: true
+
+volumes:
+  shared-data:
+    name: shared-data
+    external: true
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/web-dev/Dockerfile
+    pull_policy: always
+    environment:
+      - XDEBUG_MODE=${XDEBUG_MODE:-debug}
+      - PHP_IDE_CONFIG=serverName=${XDEBUG_SERVER_NAME:-diploma_lms}
+      - XDEBUG_CLIENT_HOST=${XDEBUG_CLIENT_HOST:-172.17.0.1}
+      - PHP_OPCACHE_MEMORY_CONSUMPTION=128
+      - PHP_OPCACHE_INTERNED_STRINGS_BUFFER=16
+      - PHP_UPLOAD_MAX_FILESIZE=${PHP_UPLOAD_MAX_FILESIZE:-10M}
+    restart: always
+    networks:
+      - safespace
+      - proxynet
+    volumes:
+      - ./:/app
+      - shared-data:/app/storage/app/upload
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.course-zona.rule=HostRegexp(`course-zona.{host:.+}`)
+      - traefik.http.services.course-zona.loadbalancer.server.port=8080

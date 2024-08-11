@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property $surname
@@ -25,7 +24,6 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
@@ -112,24 +110,26 @@ class User extends Authenticatable implements MustVerifyEmail
             ->orwhere('patronymic', 'like', '%'.$searchParam.'%');
     }
 
-    public function getAvatarsPath(int $userId)
+    public function getAvatarsPath(int $userId): string
     {
         $path = "images/avatars/{$userId}";
-        if(!file_exists($path)) {
-            mkdir($path, 0777, true);
+        $storage = Storage::disk('upload');
+
+        if($storage->exists($path)) {
+            $storage->makeDirectory($path);
         }
 
-        return "/$path/";
+        return $storage->path($path);
     }
 
-    public function clearAvatars(int $userId)
-    {
-        $path = "images/avatars/{$userId}";
-
-        if(file_exists(public_path("/$path"))) {
-            foreach ( glob( public_path("$path/*") ) as $avatar ) {
-                unlink($avatar);
-            }
-        }
-    }
+//    public function clearAvatars(int $userId)
+//    {
+//        $path = "images/avatars/{$userId}";
+//
+//        if(file_exists(public_path("/$path"))) {
+//            foreach ( glob( public_path("$path/*") ) as $avatar ) {
+//                unlink($avatar);
+//            }
+//        }
+//    }
 }

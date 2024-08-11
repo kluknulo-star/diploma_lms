@@ -1,29 +1,34 @@
 {
-    "name": "laravel/laravel",
+    "name": "kluknulo-star/course-zone-lms",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
-        "guzzlehttp/guzzle": "^7.5",
-        "intervention/image": "^2.7",
-        "laravel/framework": "^9.19",
-        "laravel/sanctum": "^3.0",
-        "laravel/socialite": "^5.6",
-        "laravel/tinker": "^2.8",
+        "php": "^8.3",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "ext-xmlreader": "*",
+        "ext-xmlwriter": "*",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^11.0",
+        "laravel/tinker": "^2.7",
+        "league/csv": "^9.0",
         "phpoffice/phpspreadsheet": "^1.27",
+        "rap2hpoutre/fast-excel": "^5.5",
+        "intervention/image": "^2.7",
+        "laravel/socialite": "^5.6",
         "rusticisoftware/tincan": "^0.11.4",
         "socialiteproviders/vkontakte": "^5.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "brianium/paratest": "^7.5",
+        "fakerphp/faker": "^1.23",
+        "itsgoingd/clockwork": "^5.1",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^11.0",
+        "nunomaduro/collision": "^8.1",
+        "soyhuce/next-ide-helper": "^0.19",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -41,15 +46,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
         ]
     },
     "extra": {
